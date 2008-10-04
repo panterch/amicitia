@@ -1,0 +1,50 @@
+body {
+  background-color: #f0f0f0;
+  font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+  margin: 0px;
+  color: #333;
+  
+}
+
+h1,h2,h3 { font-family: Georgia, Times, Serif; font-weight:normal;}
+ 
+h1 {font-size: 1.8em; color: #667; margin: 0 0 0.25em 0; padding-top: 1.5em; letter-spacing: -.02em;}
+h2 {font-size: 1.5em; color: #889; margin: 0 0 0.25em 0; padding-top: 1.5em; border-bottom: 1px #ddd solid; letter-spacing: 0em;}
+h3 {font-size: 1.4em; color: #889; margin: 0 0 0.30em 0; padding-top: 1em; font-weight:normal;}
+
+div.clear {
+  clear: both;
+  width: 1px;
+  height: 1px;
+}
+
+#notice {
+  color: green
+}
+
+#content {
+  background-color: white;
+  border: 3px solid #aaa;
+  border-top: none;
+  padding: 20px;
+}
+
+p.verbatim {
+  width: 100%;
+  padding: 5px;
+  font-size: 140%;
+  border: 1px solid #aaa;
+  font-family: monospace;
+  background-color: #f0f0f0;
+}
+
+p.disclaimer {
+  font-style: italic;
+  font-family: Georgia, Times, Serif; 
+  font-size: 100%;
+  color: #889;
+}
+
+#map {
+  width: 600px; height: 600px;
+}
