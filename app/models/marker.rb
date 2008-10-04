@@ -5,6 +5,7 @@ class Marker < ActiveRecord::Base
 
   validates_numericality_of :lat, :lng
   validates_presence_of :title, :body, :email
+  validates_uniqueness_of :token, :allow_nil => true
 
   before_create :generate_token
   after_create  :send_confirmation_mail
