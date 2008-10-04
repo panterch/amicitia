@@ -14,6 +14,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
 
   config.gem 'haml'
+  config.gem 'uuidtools'
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -69,3 +70,9 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
+
+ActionMailer::Base.delivery_method = :sendmail
+ActionMailer::Base.raise_delivery_errors = true
+ActionMailer::Base.default_url_options[:host] = "amicitia.panter.ch"
+ActionMailer::Base.register_template_extension('haml')
+

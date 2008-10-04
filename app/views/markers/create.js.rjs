@@ -1,1 +1,5 @@
-page.call 'map.closeInfoWindow'
+page.assign 'create_html', render(:partial => 'create')
+page << <<-SCRIPT
+  latlng = map.getInfoWindow().getPoint();
+  map.openInfoWindowHtml(latlng, create_html);
+  SCRIPT

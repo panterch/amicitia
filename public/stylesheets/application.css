@@ -18,6 +18,19 @@ div.clear {
   height: 1px;
 }
 
+.errorExplanation h2 {
+  font-size: 100%;
+  color: red;
+}
+
+.errorExplanation ul {
+  margin-bottom: 0px;
+}
+
+.fieldWithErrors {
+  display: inline;
+}
+
 #notice {
   color: green
 }

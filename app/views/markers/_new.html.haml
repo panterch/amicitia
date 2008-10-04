@@ -1,10 +1,16 @@
--remote_form_for(Marker.new) do |f|
+-remote_form_for(@marker) do |f|
+  =f.error_messages
   =f.hidden_field :lng
   %br
   =f.hidden_field :lat
   %br
+  =f.label :title
   =f.text_field :title
   %br
+  =f.label :body
   =f.text_field :body
+  %br
+  =f.label :email
+  =f.text_field :email
   %br
   =f.submit
