@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :homes
+  map.resources :markers
   #map.root :controller => "home"
 
 end

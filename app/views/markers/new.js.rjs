@@ -1,0 +1,7 @@
+page.assign 'new_html', render(:partial => 'new')
+page << <<-SCRIPT
+  latlng = map.getInfoWindow().getPoint();
+  map.openInfoWindowHtml(latlng, new_html);
+  $('marker_lat').value = latlng.lat();
+  $('marker_lng').value = latlng.lng();
+  SCRIPT

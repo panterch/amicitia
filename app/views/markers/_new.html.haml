@@ -1,0 +1,10 @@
+-remote_form_for(Marker.new) do |f|
+  =f.hidden_field :lng
+  %br
+  =f.hidden_field :lat
+  %br
+  =f.text_field :title
+  %br
+  =f.text_field :body
+  %br
+  =f.submit
