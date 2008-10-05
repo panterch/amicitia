@@ -3,9 +3,12 @@
 #operation
   %h1.accordion_toggle Recent Entries
   .accordion_content
-    %p  Test 123 test 123 test 123
-    %p  Test 123 test 123 test 123
-    %p  Test 123 test 123 test 123
+    %ul
+      -@recent.each do |marker|
+        %li
+          =time_ago_in_words marker.created_at
+          ago:
+          =h(marker.body)
   %h1.accordion_toggle Add your own entry
   .accordion_content{:style => 'display: none'}
     %h2 Test

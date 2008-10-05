@@ -1,8 +1,8 @@
 body {
-  background-color: #f0f0f0;
   font-family: Georgia, Times, Serif;
-  margin: 0px;
+  background-color: white;
   color: #333;
+  margin: 10px;
 }
 
  
@@ -29,12 +29,6 @@ div.clear {
   color: green
 }
 
-#content {
-  background-color: white;
-  border: 3px solid #aaa;
-  border-top: none;
-  padding: 20px;
-}
 
 p.verbatim {
   width: 100%;
@@ -58,8 +52,8 @@ p.disclaimer {
 
 #operation {
   position: absolute;
-  top: 0px;
-  left: 601px;
+  top: 10px;
+  left: 610px;
   width: 350px;
   height: 400px;
 }
@@ -89,6 +83,7 @@ p.disclaimer {
 
 .accordion_content {
   overflow: hidden;
+  background-color: white;
 }
   
 .accordion_content h2 {

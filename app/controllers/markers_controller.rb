@@ -2,7 +2,9 @@ class MarkersController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html
+      format.html do 
+        @recent = Marker.recent.confirmed
+      end
       format.js {render :json => Marker.confirmed}
     end
   end
