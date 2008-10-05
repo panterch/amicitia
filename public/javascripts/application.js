@@ -2,7 +2,8 @@ var centerLatitude = 47.369024;
 var centerLongitude = 8.538033;
 var startZoom = 13;
 var map;
-function init()
+
+function loadMap()
 {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map"));
@@ -44,7 +45,15 @@ function addMarker(latlng, description) {
   map.addOverlay(marker);
 }
 
+function loadAccordion() {
+  operation_acc = new accordion('operation');
+  operation_acc.activate($$('#operation .accordion_toggle')[0]);
+}
 
+function init() {
+  loadMap();
+  loadAccordion();
+}
 
 
 window.onload = init;

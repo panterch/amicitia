@@ -1,17 +1,11 @@
 body {
   background-color: #f0f0f0;
-  font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+  font-family: Georgia, Times, Serif;
   margin: 0px;
   color: #333;
-  
 }
 
-h1,h2,h3 { font-family: Georgia, Times, Serif; font-weight:normal;}
  
-h1 {font-size: 1.8em; color: #667; margin: 0 0 0.25em 0; padding-top: 1.5em; letter-spacing: -.02em;}
-h2 {font-size: 1.5em; color: #889; margin: 0 0 0.25em 0; padding-top: 1.5em; border-bottom: 1px #ddd solid; letter-spacing: 0em;}
-h3 {font-size: 1.4em; color: #889; margin: 0 0 0.30em 0; padding-top: 1em; font-weight:normal;}
-
 div.clear {
   clear: both;
   width: 1px;
@@ -61,3 +55,48 @@ p.disclaimer {
 #map {
   width: 600px; height: 400px;
 }
+
+#operation {
+  position: absolute;
+  top: 0px;
+  left: 601px;
+  width: 350px;
+  height: 400px;
+}
+
+.accordion_toggle {
+  display: block;
+  height: 30px;
+  width: 350px;
+  background: url(../images/accordion_toggle.jpg) no-repeat top right #a9d06a;
+  padding: 0 10px 0 10px;
+  line-height: 30px;
+  color: #ffffff;
+  text-decoration: none;
+  outline: none;
+  font-size: 14px;
+  color: #000000;
+  border-bottom: 1px solid #cde99f;
+  cursor: pointer;
+  margin: 0 0 0 0;
+}
+
+.accordion_toggle_active {
+  background: url(../images/accordion_toggle_active.jpg) no-repeat top right #e0542f;
+  color: #ffffff;
+  border-bottom: 1px solid #f68263;
+}
+
+.accordion_content {
+  overflow: hidden;
+}
+  
+.accordion_content h2 {
+  margin: 15px 0 5px 10px;
+}
+
+.accordion_content p {
+  line-height: 150%;
+  padding: 5px 10px 15px 10px;
+}
+
