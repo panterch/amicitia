@@ -36,7 +36,7 @@ class MarkersController < ApplicationController
     @marker = Marker.find_by_token(params[:token])
     raise SecurityError unless @marker
     @marker.update_attribute(:token, nil)
-    redirect_to :action => "index"
+    redirect_to @marker
   end
 
   protected
