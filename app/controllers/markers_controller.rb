@@ -1,11 +1,19 @@
 class MarkersController < ApplicationController
 
+  before_filter :load_markers, :only => [:index, :show]
+
   def index
     respond_to do |format|
-      format.html do 
-        @recent = Marker.recent.confirmed
-      end
-      format.js {render :json => Marker.confirmed}
+      format.html 
+      format.rss
+      format.js {render :json => @markers}
+    end
+  end
+
+  def show
+    @marker = Marker.find(params[:id])
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -29,5 +37,11 @@ class MarkersController < ApplicationController
     @marker.update_attribute(:token, nil)
     redirect_to :action => "index"
   end
+
+  protected
+    
+    def load_markers
+      @markers = Marker.recent.confirmed
+    end
 
 end
