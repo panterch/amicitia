@@ -1,1 +1,2 @@
 =render :partial => 'map'
+=javascript_tag "Event.observe(window, 'load', function() {GEvent.addListener(map, 'markersLoaded', function() {activateMarker(#{@marker.id});}); })"

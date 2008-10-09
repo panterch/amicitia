@@ -8,7 +8,7 @@
         %li
           =time_ago_in_words marker.created_at
           ago:
-          =link_to h(marker.body), marker
+          =link_to_function h(marker.body), "activateMarker(#{marker.id})"
       %li
         =link_to 'RSS Feed', formatted_markers_url(:rss)
   %h1.accordion_toggle Add your own entry

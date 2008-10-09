@@ -11,7 +11,7 @@ class Marker < ActiveRecord::Base
   after_create  :send_confirmation_mail
 
   named_scope :confirmed, :conditions => {:token => nil}
-  named_scope :recent, :limit => 3, :order => "created_at DESC"
+  named_scope :recent, :limit => 10, :order => "created_at DESC"
 
   protected
     def generate_token

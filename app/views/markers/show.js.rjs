@@ -1,0 +1,4 @@
+page.assign 'show_html', render(:partial => 'show')
+page << <<-SCRIPT
+  markers[#{@marker.id}].openInfoWindowHtml(show_html);
+  SCRIPT

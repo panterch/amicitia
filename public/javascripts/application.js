@@ -2,6 +2,7 @@ var centerLatitude = 47.369024;
 var centerLongitude = 8.538033;
 var startZoom = 13;
 var map;
+var markers = new Hash();
 
 function loadMap()
 {
@@ -24,10 +25,10 @@ function loadMap()
         res.each(function(cur) {
           var lat = cur.marker.lat;
           var lng = cur.marker.lng;
-          var txt = cur.marker.title + ' ' + cur.marker.body;
           var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
-          addMarker(latlng, txt);
+          addMarker(cur.marker.id, latlng);
           });
+        GEvent.trigger(map, 'markersLoaded');
       }
     });
 
@@ -35,14 +36,20 @@ function loadMap()
 }
 
 
-function addMarker(latlng, description) {
+function addMarker(id, latlng) {
   var marker = new GMarker(latlng);
   GEvent.addListener(marker, 'click',
     function() {
-      marker.openInfoWindowHtml(description);
+      activateMarker(id);
     }
   );
   map.addOverlay(marker);
+  markers[id] = marker;
+}
+
+function activateMarker(id) {
+  markers[id].openInfoWindowHtml('loading...');
+  new Ajax.Request('/markers/'+id, { method: 'GET' });
 }
 
 function loadAccordion() {
@@ -50,11 +57,9 @@ function loadAccordion() {
   operation_acc.activate($$('#operation .accordion_toggle')[0]);
 }
 
-function init() {
+window.onunload = GUnload;
+
+Event.observe(window, 'load', function() {
   loadMap();
   loadAccordion();
-}
-
-
-window.onload = init;
-window.onunload = GUnload;
+});
