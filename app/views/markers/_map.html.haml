@@ -13,5 +13,12 @@
         =link_to 'RSS Feed', formatted_markers_url(:rss)
   %h1.accordion_toggle Add your own entry
   .accordion_content{:style => 'display: none'}
-    %h2 Test
-    %p  Test 123 test 123 test 123
+    %h2 Would you like to enter your own advertisement?
+    %p
+      Nothing easier than that: Just read the conditions below and then
+      click on this link:
+      =link_to_function('Add my own entry', "changeState('input')")
+    %p
+      This is just placeholder text.
+      Amid unrelenting pessimism about the health of the global economy and world governments’ ability to solve the financial crisis, stocks swung wildly on Friday, with the Dow Jones industrial average down 566 points, or 6.5 percent, by early afternoon in New York, continuing this week’s aggressive sell-off. 
+
