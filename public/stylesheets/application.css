@@ -29,7 +29,6 @@ div.clear {
   color: green
 }
 
-
 p.verbatim {
   width: 100%;
   padding: 5px;
@@ -95,3 +94,26 @@ p.disclaimer {
   padding: 5px 10px 15px 10px;
 }
 
+#track {
+  width:100%;
+  background-color:#ccc;
+  height:10px;
+  margin-left: 5px;
+  }
+
+#handle {
+  width:10px; height:15px; background-color:#f00; cursor:move;
+  }
+
+#debug {
+  height: 100px;
+  width: 600px;
+  margin-top: 20px;
+  overflow: auto;
+  white-space: pre;
+}
+
+.debug {
+  font-style: fixed;
+  font-size:  70%;
+  }

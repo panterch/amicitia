@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081004202812) do
+ActiveRecord::Schema.define(:version => 20081016164744) do
 
   create_table "markers", :force => true do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20081004202812) do
     t.datetime "updated_at"
     t.string   "email"
     t.string   "token"
+    t.date     "date"
   end
 
 end

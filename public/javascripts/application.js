@@ -5,10 +5,22 @@ var map;
 var markers = new Hash();
 var activeMarker = '';
 var state = '';
+var debug = true;
+
+
+function logdebug(text) {
+  if (debug) { 
+    $('debug').innerHTML = (new Date())+': '+text+'\n'+$('debug').innerHTML;
+  }
+}
 
 function changeState(new_state) {
-  GEvent.trigger(window, new_state);
+  if (state == new_state) {
+    return;
+  }
+  logdebug('state change from ['+state+'] to ['+new_state+']'); 
   state = new_state;
+  GEvent.trigger(window, new_state);
 }
 
 function loadMap()
@@ -24,23 +36,29 @@ function loadMap()
 function loadMarkers() {
   map.closeInfoWindow();
   GEvent.clearListeners(map, 'click');
-  if (1 > markers.size()) {
-    new Ajax.Request('/markers', { method: 'GET',
-      onComplete: function(request){
-          res=eval( "(" + request.responseText + ")" );
-          res.each(function(cur) {
-            var lat = cur.marker.lat;
-            var lng = cur.marker.lng;
-            var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
-            addMarker(cur.marker.id, latlng);
-            });
-          changeState('markersLoaded');
-        }
-      });
-  } else { changeState('markersLoaded'); }
+  logdebug('sending request to load markers...');
+  new Ajax.Request('/markers', { method: 'GET',
+    parameters: {
+      'days': $('sliderValue').innerHTML
+    },
+    onComplete: function(request){
+        clearMarkers();
+        res=eval( "(" + request.responseText + ")" );
+        res.each(function(cur) {
+          var lat = cur.marker.lat;
+          var lng = cur.marker.lng;
+          var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
+          addMarker(cur.marker.id, latlng);
+          });
+        changeState('markersLoaded');
+      }
+    });
 }
 
-
+function clearMarkers() {
+  map.clearOverlays();
+  markers = new Hash();
+  }
 
 function addMarker(id, latlng) {
   var marker = new GMarker(latlng);
@@ -55,7 +73,18 @@ function addMarker(id, latlng) {
 
 function activateMarker(id) {
   activeMarker = id;
-  changeState('display');
+  if (state == 'markersLoaded') {
+    showActiveMarker();
+  } else {
+    changeState('display');
+  }
+}
+
+function clearActiveMarker() {
+  if (markers[activeMarker]) {
+    markers[activeMarker].closeInfoWindow();
+  }
+  activeMarker = '';
 }
 
 function showActiveMarker() {
@@ -71,14 +100,32 @@ function loadAccordion() {
 }
 
 function loadInput() {
-  map.clearOverlays();
-  markers = new Hash();
+  clearMarkers();
   GEvent.addListener(map, "click", function(overlay, latlng) {
     if (null != overlay) return;
     map.openInfoWindowHtml(latlng,'loading...');
     new Ajax.Request('/markers/new', { method: 'GET' });
   });
   map.openInfoWindowHtml(map.getCenter(), 'Just click on the map to add your entry!');
+}
+
+function loadSlider() {
+  var min = 0;
+  var max = 50;
+  new Control.Slider('handle', 'track', {
+    range: $R(min, max),
+    values: $A($R(min, max)),
+    sliderValue: 5,
+    onSlide: function(v){ $('sliderValue').innerHTML = v; },
+    onChange: function(v) {
+      clearActiveMarker();
+      if ('display' == state) {
+        GEvent.addListener(window, 'markersLoaded', changeState('display'));
+      } else {
+        changeState('display');
+      }
+    }
+  }); 
 }
 
 window.onunload = GUnload;
@@ -88,6 +135,7 @@ Event.observe(window, 'load', function() {
   GEvent.addListener(window, 'init', function() {
     loadMap();
     loadAccordion();
+    loadSlider();
     changeState('display');
   });
 

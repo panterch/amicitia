@@ -42,7 +42,11 @@ class MarkersController < ApplicationController
   protected
     
     def load_markers
-      @markers = Marker.recent.confirmed
+      if (dated = params[:days].to_i) > 0
+        @markers = Marker.confirmed.dated dated.days.ago
+      else
+        @markers = Marker.confirmed.recent
+      end
     end
 
 end

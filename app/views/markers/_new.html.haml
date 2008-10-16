@@ -1,9 +1,7 @@
 -remote_form_for(@marker) do |f|
   =f.error_messages
   =f.hidden_field :lng
-  %br
   =f.hidden_field :lat
-  %br
   =f.label :title
   =f.text_field :title
   %br
@@ -12,5 +10,8 @@
   %br
   =f.label :email
   =f.text_field :email
+  %br
+  =f.label :date
+  =f.date_select(:date, :order => [:day, :month, :year])
   %br
   =f.submit

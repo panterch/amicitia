@@ -6,11 +6,17 @@
     %ul
       -@markers.each do |marker|
         %li
-          =time_ago_in_words marker.created_at
+          =time_ago_in_words marker.date
           ago:
           =link_to_function h(marker.body), "activateMarker(#{marker.id})"
       %li
         =link_to 'RSS Feed', formatted_markers_url(:rss)
+    #track
+      #handle
+    The map shows entries for the last
+    %span#sliderValue 5
+    days. (Use the slider to adjust this.)
+
   %h1.accordion_toggle Add your own entry
   .accordion_content{:style => 'display: none'}
     %h2 Would you like to enter your own advertisement?
@@ -21,4 +27,10 @@
     %p
       This is just placeholder text.
       Amid unrelenting pessimism about the health of the global economy and world governments’ ability to solve the financial crisis, stocks swung wildly on Friday, with the Dow Jones industrial average down 566 points, or 6.5 percent, by early afternoon in New York, continuing this week’s aggressive sell-off. 
+
+
+#debug.debug
+%p.debug
+  =link_to_function('clear debug log', "$('debug').innerHTML=''")
+
 
